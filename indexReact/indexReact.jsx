@@ -25,12 +25,12 @@ function Greeting() {
 //* props 가 전달되는 실제 흐름
 //부모 컨포넌트 : jsx
 function App() {
-  return <TodoApp title="할 일 목록" />; //<TodoApp></TodoApp> 기능적으로 완전히 동일 
+  return <TodoApp title="할 일 목록" />; //<TodoApp></TodoApp> 기능적으로 완전히 동일
 }
 
 //jsx => 함수 호출로 변환
 
-TodoApp({title="할 일 목록"});
+TodoApp({ title: "할 일 목록" });
 
 // 자식 컴포넌트에서 props 받기
 
@@ -42,7 +42,6 @@ function TodoApp(props) {
 function TodoApp(tilte) {
   return <h1>{title}</h1>;
 }
-
 
 //?부모 컴토넌트
 function App() {
@@ -102,8 +101,7 @@ function counter() {
 // onClick={() => setCount(count + 1)} = 버튼 클릭하면 실행
 // () => = 화살표 함수 (function()과 같은 의미)
 ---------------------------------------------------------------------
-```
-
+```;
 
 //!Q => function todoApp() 이 아니라 function TodoApp() 인가요?
 //!A => React 컴포넌트는 반드시 대문자로 시작해야 합니다.
@@ -118,9 +116,9 @@ function counter() {
 // 사용자 목록을 화면에 표시
 function UserList() {
   const users = [
-    { id: 1, name: '김철수', age: 25 },
-    { id: 2, name: '이영희', age: 30 },
-    { id: 3, name: '박민수', age: 28 }
+    { id: 1, name: "김철수", age: 25 },
+    { id: 2, name: "이영희", age: 30 },
+    { id: 3, name: "박민수", age: 28 },
   ];
 
   return (
@@ -137,13 +135,9 @@ function UserList() {
   );
 }
 ```
-
-// **결과 화면**:
-// 회원 목록
-// - 김철수 (25세)
-// - 이영희 (30세)
-// - 박민수 (28세)
-
-
-
-
+**결과 화면**:
+ 회원 목록
+  김철수 (25세)
+  이영희 (30세)
+  박민수 (28세)
+```;
