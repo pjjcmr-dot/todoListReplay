@@ -1,25 +1,16 @@
-// ✋ 일반 CSS를 CSS Module로 변경해보세요!
-
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import trashIcon from '../../ImageUsage/assets/trash.svg';
-// TODO 1: 일반 CSS import를 CSS Module import로 변경하세요
-// 현재: import './Panel.css';
-// 변경: import styles from './Panel.module.css';
-import Styles from './Panel.module.css';
+import panelStyles from './Panel.module.css';
 import todoItemStyles from './TodoItem.module.css';
 import appStyles from './App.module.css';
 
 function Panel({ children }) {
-  // TODO 2: className을 CSS Module 방식으로 변경하세요
-  // 현재: className="panel"
-  // 변경: className={styles.panel}
-  return <section className={Styles.panel}>{children}</section>;
+  return <section className={panelStyles.panel}>{children}</section>;
 }
 
 function TodoItem({ todo, onToggle, onDelete }) {
   return (
-    // TODO 3: TodoItem의 className들을 CSS Module 방식으로 변경하세요
     <li className={todoItemStyles.todoItem}>
       <span
         className={`${todoItemStyles.todoText} 
@@ -89,7 +80,6 @@ function App() {
   };
 
   return (
-    // TODO 4: App의 className들을 CSS Module 방식으로 변경하세요
     <div className={appStyles.appContainer}>
       <div className={appStyles.titleContainer}>
         <h1 className={appStyles.title}>오늘의 할 일</h1>
