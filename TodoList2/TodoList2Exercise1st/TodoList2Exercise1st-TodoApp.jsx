@@ -26,26 +26,78 @@ function TodoApp() {
   };
 
   // 완료 토글
-  const toggleTodo = (Id) => {
+  const toggleTodo = (id) => {
     setTodos(
-      todos.map((todo) => (todo.Id ? { ...todo, done: !todo.done } : todo)) //! 화살표 함수에서 매개변수가 1개일 때 괄호 () 를 생략할 수 있다.
+      todos.map((todo) => (todo.id ? { ...todo, done: !todo.done } : todo)) //! 화살표 함수에서 매개변수가 1개일 때 괄호 () 를 생략할 수 있다.
     ); //! todo 는 todos 배열 안에 들어있는 “한 개의 할 일 객체” 하나를 가리킨다.
   };
 
   // 삭제하기
-  const deleteTodo = (Id) => {
-    setTodos(todos.filter((todo) => todo.Id !== id));
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>할일 목록</h1>
-      <p>{todos}</p>
-      <button
-        onClick={() => {
-          setTodos(todos);
-        }}
-      ></button>
+
+      {/*입력 영역*/}
+      <div>
+        <input
+          type="text"
+          value={input}
+          onChange={(event) => setInput(event.target.value)} // 내가 지금 입력창에 친 글자, 글자 하나 칠 때마다 → setInput 실행
+          /* <input />  ← 이게 e.target
+                  ↓
+              [안녕하세요]  ← 여기 쓴 글자가 e.target.value */
+          onKeyDown={(event) => event.key === "Enter" && addTodo()} // Enter 키 누르면 → addTodo 실행
+          placeholder="할일을 입력하세요" // 입력 전 → "할 일을 입력하세요" 표시 // 입력 시작 → 자동으로 사라짐
+          style={{ padding: "10px", width: "300px" }}
+        />
+        <button
+          onClick={addTodo}
+          style={{ padding: "10px", marginLeft: "5px" }}
+        >
+          추가
+        </button>
+      </div>
+
+      {/*todo:할일 목록*/}
+      <ul style={{ listStyle: "none", padding: "0" }}>
+        {todo.map((todo) => (
+          <li
+            key={todo.id}
+            style={{ margin: "10px 0", padding: "10px", background: "#f5f5f5" }}
+          >
+            <input
+              type="checkbox"
+              checked={todo.done}
+              onChange={() => toggleTodo(todo.id)}
+            />
+            <span
+              style={{
+                marginLeft: "10px",
+                textDecoration: todo.done ? "line-through" : "none",
+              }}
+            >
+              {todo.text}
+            </span>
+            <button
+              onClick={() => deleteTodo(todo.id)}
+              style={{ marginLeft: "10px", padding: "5px 10px" }}
+            >
+              삭제
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* 통계 */}
+      <p>
+        전체: {todos.length}개 | 완료: {todos.filter((t) => t.done).length}개
+      </p>
     </div>
   );
 }
+
+export default TodoApp;
