@@ -13,6 +13,7 @@ function TodoApp() {
       alert("할일을 입력해주세요!"); // 알림 창
       return;
     }
+
     // 번호가 있고, 내용이 있고, 아직 안끝난 할일 1개 있다. 라는 말의 아래 내용
     const newTodo = {
       id: Date.now(), // 할 일의 고유번호, 항상 다르기 때문에 겹치지 않는 번호가 됨
@@ -27,12 +28,18 @@ function TodoApp() {
   // 완료 토글
   const toggleTodo = (Id) => {
     setTodos(
-      todos.map((todo) => todo.Id ? {...todo, done: !todo.done} : todo) //! 화살표 함수에서 매개변수가 1개일 때 괄호 () 를 생략할 수 있다.
-    );                                                                  //! todo 는 todos 배열 안에 들어있는 “한 개의 할 일 객체” 하나를 가리킨다.
+      todos.map((todo) => (todo.Id ? { ...todo, done: !todo.done } : todo)) //! 화살표 함수에서 매개변수가 1개일 때 괄호 () 를 생략할 수 있다.
+    ); //! todo 는 todos 배열 안에 들어있는 “한 개의 할 일 객체” 하나를 가리킨다.
+  };
+
+  // 삭제하기
+  const deleteTodo = (Id) => {
+    setTodos(todos.filter((todo) => todo.Id !== id));
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
+      <h1>할일 목록</h1>
       <p>{todos}</p>
       <button
         onClick={() => {
